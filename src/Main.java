@@ -1,7 +1,3 @@
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 public class Main {
 	
 	/**
@@ -13,7 +9,7 @@ public class Main {
 	 * 
 	 */
 	public Main() {
-		this.chart = new Chart("Notam Application");
+		this.chart = new Chart("Notam Application", 9, 262, 169);
 		chart.init();
 	}
 	

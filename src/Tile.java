@@ -4,21 +4,21 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Tile {
 	private String imageUrl;
-	private int z; // zoom
-	private int y;
-	private int x;
+	private int y, x, width, height;
+	private Chart chart;
 	
-	public Tile( int z, int x, int y) {
-		this.z = z;
+	public Tile(Chart chart, int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.chart = chart;
 		
-		this.imageUrl = "https://tile.openstreetmap.org/"+this.z+"/"+this.x+"/"+this.y+".png";
+		this.imageUrl = "https://tile.openstreetmap.org/"+this.chart.zoom+"/"+this.chart.currentX+"/"+this.chart.startY+".png";
 	}
 	
 	public JLabel make() {
@@ -37,14 +37,26 @@ public class Tile {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		// x, y
-		imageTile.setBounds(0, 0, 256, 256);
+		
+		imageTile.setBounds(this.x, this.y, this.height, this.width);
 		
 		return imageTile;
 	}
 	
-	public void addToChart(Chart chart) {
-		chart.getContentPane().add(this.make());
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public int getWidth() {
+		return this.width;
+	}
+	
+	public int getHeight() {
+		return this.height;
 	}
 	
 }
